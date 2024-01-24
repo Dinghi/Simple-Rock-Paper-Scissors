@@ -2,10 +2,17 @@
 
 #include <iostream>
 
+enum PlayerState {
+		winner = 0,
+		loses,
+		ties,
+		gamesPlayed,
+};
+
 class Player
 {
 private:
-		int Wins;
+		int States[4];
 		int GamesPlayed;
 		std::string Name;
 public:
@@ -15,8 +22,8 @@ public:
 		void GetNameInput();
 		void SetName(std::string);
 		int GetRPSRandom();
-		int GetWins();
+		int GetStates(PlayerState);
 		int GetGamesPlayed();
-		void SetPoints(bool);
+		void SetPoints(PlayerState);
 };
 

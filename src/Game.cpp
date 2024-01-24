@@ -31,6 +31,7 @@ void Game::ExecuteChoice(int choice) {
 				break;
 		default:
 				std::cout << "Command not recognized";
+				StartGame();
 				break;
 		}
 }
@@ -61,9 +62,12 @@ void Game::StartGame() {
 				int playerChoice = atoi(player.GetInput()) - 1;
 				int enemyChoice = player.GetRPSRandom();
 				GameWinState winState = PlayerWins(playerChoice, enemyChoice);
-				std::cout << "Player: " << objList[playerChoice] << " enemy: " << objList[enemyChoice] << " Result: " << gameWinStateStr[winState] << "!\n";
-				player.SetPoints(winState == GameWinState::win);
-				std::cout << "Tot Player wins: " << player.GetWins() << " Games played wins: " << player.GetGamesPlayed() << "!\n";
+				std::cout << "Player [" << objList[playerChoice] << "] enemy [" << objList[enemyChoice] << "] Result: " << gameWinStateStr[winState] << "!\n";
+				player.SetPoints((PlayerState)winState);
+				std::cout << "Tot Player wins [" << player.GetStates(PlayerState::winner) << 
+										 "] Tot Player loses [" << player.GetStates(PlayerState::loses) << 
+										 "] Tot Player ties [" << player.GetStates(PlayerState::ties) << 
+										 "] Games played [" << player.GetStates(PlayerState::gamesPlayed) << "]!\n";
 				PrintGameMenu();
 				ExecuteChoice(atoi(player.GetInput()));
 		}
