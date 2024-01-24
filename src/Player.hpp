@@ -10,10 +10,13 @@ private:
 		std::string Name;
 public:
 		Player();
+		void _Init();
 		char* GetInput();
 		void GetNameInput();
 		void SetName(std::string);
 		int GetRPSRandom();
+		int GetWins();
+		int GetGamesPlayed();
 		void SetPoints(bool);
 };
 

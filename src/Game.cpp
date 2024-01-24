@@ -38,6 +38,7 @@ Player* Game::GetPlayer() {
 		return &player;
 }
 void Game::Play() {
+		player._Init();
 		SetGameState(true);
 		player.GetNameInput();
 		PrintGameMenu();
@@ -55,12 +56,14 @@ GameWinState Game::PlayerWins(int playerChoice, int enemyChoice) {
 void Game::StartGame() {
 		while (Running)
 		{
+				system("CLS");
 				PrintChoseRPS();
 				int playerChoice = atoi(player.GetInput()) - 1;
 				int enemyChoice = player.GetRPSRandom();
 				GameWinState winState = PlayerWins(playerChoice, enemyChoice);
 				std::cout << "Player: " << objList[playerChoice] << " enemy: " << objList[enemyChoice] << " Result: " << gameWinStateStr[winState] << "!\n";
 				player.SetPoints(winState == GameWinState::win);
+				std::cout << "Tot Player wins: " << player.GetWins() << " Games played wins: " << player.GetGamesPlayed() << "!\n";
 				PrintGameMenu();
 				ExecuteChoice(atoi(player.GetInput()));
 		}

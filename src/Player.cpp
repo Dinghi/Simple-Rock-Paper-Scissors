@@ -4,7 +4,8 @@
 #include<iomanip>
 
 
-Player::Player() { Wins = 0; GamesPlayed = 0; Name = "New Player"; }
+Player::Player() {  }
+void Player::_Init() { Wins = 0; GamesPlayed = 0; Name = "New Player"; }
 
 void Player::SetPoints(bool winner) { if (winner) Wins++; GamesPlayed++; }
 void Player::SetName(std::string n) { Name = n; }
@@ -24,4 +25,5 @@ int Player::GetRPSRandom() {
 		srand(time(NULL));
 		return rand() % 3;
 }
-
+int Player::GetWins() { return Wins; }
+int Player::GetGamesPlayed() { return GamesPlayed; }
